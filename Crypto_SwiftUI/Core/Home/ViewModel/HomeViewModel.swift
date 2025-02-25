@@ -6,32 +6,24 @@
 //
 
 import Foundation
+import Combine
 
 class HomeViewModel: ObservableObject {
  
     @Published var allCoins: [CoinModel] = []
     @Published var porfolioCoins: [CoinModel] = []
     
+    private let dataService = CoinDataService()
+    private var cancellables = Set<AnyCancellable>()
+    
     init() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-            self.allCoins.append(DeveloperPreview.instance.coin)
-
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-            self.porfolioCoins.append(DeveloperPreview.instance.coin)
-        }
+        addSubsribers()
+    }
+    
+    private func addSubsribers() {
+        dataService.$allCoins.sink { [weak self] allCoins in
+            self?.allCoins = allCoins
+        }.store(in: &cancellables)
     }
     
 }
