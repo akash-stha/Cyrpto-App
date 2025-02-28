@@ -21,6 +21,7 @@ struct HomeView: View {
             // Content layer
             VStack {
                 headerView
+                SearchBarView(searchText: $viewModel.searchText)
                 columnTitles
                 if !showPortfolio {
                     allCoinsList
@@ -83,7 +84,7 @@ extension HomeView {
         List {
             ForEach(viewModel.allCoins) { coin in
                 CoinRowView(coin: coin, showHoldingsColumn: false)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 12, leading: 0, bottom: 12, trailing: 10))
             }
         }
         .listStyle(PlainListStyle())
@@ -93,7 +94,7 @@ extension HomeView {
         List {
             ForEach(viewModel.allCoins) { coin in
                 CoinRowView(coin: coin, showHoldingsColumn: true)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .listRowInsets(.init(top: 12, leading: 0, bottom: 12, trailing: 10))
             }
         }
         .listStyle(PlainListStyle())
