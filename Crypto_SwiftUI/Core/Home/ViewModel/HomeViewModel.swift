@@ -14,6 +14,13 @@ class HomeViewModel: ObservableObject {
     @Published var porfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
     
+    @Published var statistics: [StatisticModel] = [
+        StatisticModel(title: "Title", value: "Value", percentageChange: 1),
+        StatisticModel(title: "Title", value: "Value"),
+        StatisticModel(title: "Title", value: "Value"),
+        StatisticModel(title: "Title", value: "Value", percentageChange: -10)
+    ]
+    
     private let dataService = CoinDataService()
     private var cancellables = Set<AnyCancellable>()
     
