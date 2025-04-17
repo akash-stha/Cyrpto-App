@@ -16,13 +16,13 @@ struct XMarkButton: View {
             dismiss()
         }, label: {
             Image(systemName: "xmark")
-                .font(.subheadline)
+                .font(.headline)
                 .padding(8)
-                .background(RoundedRectangle(cornerRadius: 8)
-                    .fill(.white)
-                )
-                .padding(.top, 12)
-                .shadow(color: .black.opacity(0.2), radius: 4)
+//                .background(RoundedRectangle(cornerRadius: 8)
+//                    .fill(Color.colorTheme.accent)
+//                )
+//                .padding(.top, 12)
+//                .shadow(color: .black.opacity(0.2), radius: 4)
         })
     }
 }
